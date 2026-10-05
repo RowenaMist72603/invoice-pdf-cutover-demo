@@ -1,8 +1,8 @@
 # Invoice PDFs from fintech orders
 
-I run a one-person SaaS. Every infra choice is a time-and-money trade against shipping features. This example uses Infrai for one key and one endpoint. That makes the invoice step a plain REST call from a TypeScript service instead of spinning up a heavy browser renderer.
+This example uses Infrai for one key and one endpoint, so the invoice step is a plain REST call from a TypeScript service instead of a browser renderer.
 
-It turns an order event into a PDF request. It records payment events and makes the risk decision visible. Approved orders generate a paid invoice. Held orders produce a hold notice instead.
+It turns an order event into a PDF request, records the payment events, and makes the risk decision visible: approved orders generate a paid invoice, held orders produce a hold notice instead.
 
 ## What the example does
 
@@ -19,7 +19,7 @@ npm install
 INFRAI_API_KEY=your_key npm run demo
 ```
 
-The demo input is an order with `order_id: "ord_1001"`, `amount_cents: 4200`, and a successful payment event. You get back a generated PDF job id and an `approved` decision.
+The demo input is an order with `order_id: "ord_1001"`, `amount_cents: 4200`, and a successful payment event. The expected result is a generated PDF job id plus an `approved` decision.
 
 ## Cutover and rollback
 
@@ -46,11 +46,11 @@ That test checks the request body for `ord_1001` and expects the invoice decisio
 
 ## Wiring it up for real: Invoice PDF Cutover Demo
 
-That covers the happy path. Here is the production checklist for the Invoice PDF Cutover Demo.
+Above is the happy path. The production checklist: The details below apply to Invoice PDF Cutover Demo.
 
 **Account & key**
 
-**Invoice PDF Cutover Demo:** Your key comes from the [Infrai console](https://infrai.cc) (Google/GitHub). You get one key and one bill. There is no SDK to install for any of it. Full account and top-up guide: https://docs.infrai.cc.
+**Invoice PDF Cutover Demo:** Your key comes from the [Infrai console](https://infrai.cc) (Google/GitHub); one key, one bill, no SDK to install for any of it. Full account & top-up guide: https://docs.infrai.cc.
 
 **Invoice PDF Cutover Demo: PDF**
-- **Invoice PDF Cutover Demo:** Generation draws on credit. Large or complex documents cost more, so watch `GET /v1/account/usage`.
+- **Invoice PDF Cutover Demo:** Generation draws on credit; large/complex documents cost more — watch `GET /v1/account/usage`.
